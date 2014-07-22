@@ -4,10 +4,10 @@ function CheckBox(checkall, none) {
 }
 
 CheckBox.prototype.bindEvents = function() {
-  checkall.onclick = function() {
+  this.checkall.onclick = function() {
     CheckBox.prototype.mark(true);
   }
-  none.onclick = function() {
+  this.none.onclick = function() {
     CheckBox.prototype.mark(false);
   }
 }
@@ -20,8 +20,8 @@ CheckBox.prototype.mark = function(flag) {
   }
 
 window.onload = function() {
-  checkall = document.getElementById('check');
-  none = document.getElementById('none');
+  var checkall = document.getElementById('check');
+  var none = document.getElementById('none');
   var checkbox = new CheckBox(checkall, none);
   checkbox.bindEvents();
 }
