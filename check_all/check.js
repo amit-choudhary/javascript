@@ -5,10 +5,10 @@ function CheckBox(checkall, none) {
 
 CheckBox.prototype.bindEvents = function() {
   var _this = this
-  this.checkall.onclick = function() {
+  _this.checkall.onclick = function() {
     _this.mark(true);
   }
-  this.none.onclick = function() {
+  _this.none.onclick = function() {
     _this.mark(false);
   }
 }
