@@ -4,11 +4,12 @@ function CheckBox(checkall, none) {
 }
 
 CheckBox.prototype.bindEvents = function() {
+  var _this = this
   this.checkall.onclick = function() {
-    CheckBox.prototype.mark(true);
+    _this.mark(true);
   }
   this.none.onclick = function() {
-    CheckBox.prototype.mark(false);
+    _this.mark(false);
   }
 }
 
