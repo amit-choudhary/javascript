@@ -1,16 +1,16 @@
-function CheckBox(checkall, none) {
-  this.checkall = checkall;
-  this.none = none;
+function CheckBox(checkallLink, noneLink) {
+  this.checkallLink = checkallLink;
+  this.noneLink = none;
 }
 
 CheckBox.prototype.bindEvents = function() {
   var _this = this
-  _this.checkall.onclick = function() {
+  _this.checkallLink.addEventListener('click', function() {
     _this.mark(true);
-  }
-  _this.none.onclick = function() {
+  } );
+  _this.noneLink.addEventListener('click', function() {
     _this.mark(false);
-  }
+  } );
 }
 
 CheckBox.prototype.mark = function(flag) {
@@ -21,8 +21,8 @@ CheckBox.prototype.mark = function(flag) {
   }
 
 window.onload = function() {
-  var checkall = document.getElementById('check');
-  var none = document.getElementById('none');
-  var checkbox = new CheckBox(checkall, none);
+  var checkallLink = document.getElementById('check');
+  var noneLink = document.getElementById('none');
+  var checkbox = new CheckBox(checkallLink, noneLink);
   checkbox.bindEvents();
 }
