@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Registration Form </title>
+    <link rel="stylesheet" type="text/css" href="form.css">
+  </head>
+  <body>
+    <form id="registration_form">
+      <div class="caption align">
+        Registration Form
+      </div>
+      <div class="form">
+        <div class="table">
+          <div class="row">
+            <label class="textbox-label" for="login">
+              <b class="login">
+                Login Id
+              </b>
+            </label>
+            <input type="text" class="textbox" id="login">
+          </div>
+          <div class="row">
+            <label class="textbox-label" for="email">
+              <b class="email">
+                Email
+              </b>
+            </label>
+            <input type="email" class="textbox" id="email">
+          </div>
+          <div class="row">
+            <label class="textbox-label" for="name">
+              <b class="name">
+                Name
+              </b>
+            </label>
+            <input type="text" class="textbox" id="name">
+          </div>
+          <div class="row">
+            <label class="textbox-label" for="timezone">
+              <b class="timezone">
+                Timezone
+              </b>
+            </label>
+            <select class="textbox" id="timezone">
+              <option value="gmt">
+                GMT
+              </option>
+              <option value="ist">
+                IST
+              </option>
+            </select>
+          </div>
+          <div class="row">
+            <label class="textbox-label" for="homepage">
+              <b class="homepage">
+                Home Page
+              </b>
+            </label>
+            <input type="url" class="textbox" id="homepage">
+          </div>
+        </div>
+        <label for="aboutme">
+          <b class="aboutme">
+            About me
+          </b>
+        </label>
+        <br/>
+        <textarea id="aboutme" rows="10" cols="45"></textarea>
+        <br/>
+        <input type="checkbox" id="confirm">
+        <label for="confirm">
+          <b>
+            Receive notification of comments 
+          </b>
+        </label>
+        <br/>
+        You will be sent email when someone posts comment to your Blog or Album.
+        <br/>
+        <br/>
+        <div class="align">
+          Your password will be mailed to you.
+        </div>
+        <br/>
+        <div class="align">
+          <input type="submit" value="GO" class="gobutton">
+        </div>
+      </div>
+    </form>
+    <script src="form.js"></script>
+  </body>
+</html>
