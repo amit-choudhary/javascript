@@ -1,0 +1,28 @@
+#first-select {
+  width: 400px;
+  height: 90px;
+}
+
+#second-select {
+  width: 400px;
+  height: 90px;
+}
+
+div {
+  float: left;
+}
+
+.buttons {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+span{
+  display: table-row;
+}
+
+#remove, #add {
+  margin-top: 15px;
+  background-color: red;
+  color: white;
+}
