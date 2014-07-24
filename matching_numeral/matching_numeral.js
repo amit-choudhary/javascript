@@ -10,16 +10,21 @@ CheckForm.prototype.bindEvents = function() {
   this.formElement.addEventListener('submit', function(event) {
     flag = _this.checkNumber(_this.numberTextField.value);
     _this.writeResult(flag);
-    flag ? event.preventDefault() : '';
+    flag ? '' : event.preventDefault();
   } );  
 }
 
 CheckForm.prototype.checkNumber = function(number) {
-  return isNaN(number);
+  if (number == null || number == '') {
+    return false;
+  }
+  else {
+  return !(isNaN(number));
+  }
 }
 
 CheckForm.prototype.writeResult = function(flag) {
-  this.resultTextField.value = !flag;
+  this.resultTextField.value = flag;
 }
 
 window.onload = function() {
