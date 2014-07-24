@@ -1,17 +1,18 @@
-function CheckBox(mainlist) {
-  this.mainlist = mainlist;
+function MainList(mainlistElement) {
+  this.mainlistElement = mainlistElement;
 }
 
-CheckBox.prototype.bindEvents = function() {
-  var _this = this
-  for (var i = 0; i < _this.mainlist.length; i++){
-    _this.mainlist[i].onclick = function() {
+Mainlist.prototype.bindEvents = function() {
+  var _this = this;
+  for (var i = 0; i < _this.mainlistElement.length; i++) {
+    _this.mainlistElement[i].addEventListener('click', function() {
       _this.performOnChild(this);
-    }
+      console.log(_this);
+    } );
   }
 }
 
-CheckBox.prototype.performOnChild = function(list) {
+Mainlist.prototype.performOnChild = function(list) {
   var child = document.getElementsByName(list.className);
   if (list.checked == true) {
     for (var j = 0; j < child.length; j++) {
@@ -29,7 +30,7 @@ CheckBox.prototype.performOnChild = function(list) {
 }
 
 window.onload = function() {
-  var mainlist = document.getElementsByName('main-list');
-  var checkbox = new CheckBox(mainlist);
-  checkbox.bindEvents()
+  var mainlistElement = document.getElementsByName('main-list');
+  var mainlist = new MainList(mainlistElement);
+  mainlist.bindEvents()
 }
