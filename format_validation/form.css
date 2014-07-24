@@ -1,0 +1,57 @@
+form{
+  background-color: #E8F2D7;
+  width: 400px;
+  font-family: sans-serif;
+  font-size: 12px;
+  margin: 0 auto;
+}
+
+.caption{
+  color: white;
+  background-color: #9AB368;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.align{
+  text-align: center;
+}
+
+.table{
+  display: table;
+  margin-top: 20px;
+}
+
+.row{
+  display: table-row;
+  margin-bottom: 10px;
+}
+
+.textbox-label{
+   display: table-cell;
+}
+
+.textbox{
+  display: table-cell;
+  margin-left: 40px;
+}
+
+.form{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.gobutton{
+  color: white;
+  background-color: #556538;
+  border-radius: 50px;
+}
+
+textarea{
+  resize :none;
+}
+
+select{
+  width: 140px;
+}
