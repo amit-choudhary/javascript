@@ -33,7 +33,7 @@ Match.prototype.checkFormat = function(textbox) {
 
 Match.prototype.extractDomain = function(textbox) {
   var regex = /(\/(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)(\/)?/;
-  var result = regex.exec(textbox.value);
+      result = regex.exec(textbox.value);
   result = result[0].split('/');
   result = result[1].split('.');
   if (result.length == 2) {
@@ -46,7 +46,7 @@ Match.prototype.extractDomain = function(textbox) {
 
 window.onload = function() {
   var domain = document.getElementById('domain');
-  var form = document.forms[0];
-  var match = new Match(domain, form);
+      form = document.forms[0];
+      match = new Match(domain, form);
   match.bindEvents();
 }
