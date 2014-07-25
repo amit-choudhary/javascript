@@ -7,7 +7,7 @@ this.resultTextField = resultTextField;
 CheckForm.prototype.bindEvents = function() {
   var flag = '';
       _this = this;
-  this.formElement.addEventListener('submit', function(event) {
+  _this.formElement.addEventListener('submit', function(event) {
     flag = _this.checkNumber(_this.numberTextField.value);
     _this.writeResult(flag);
     flag ? '' : event.preventDefault();
