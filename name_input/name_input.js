@@ -3,7 +3,7 @@ function PromptBox() {
 
 PromptBox.prototype.bindEvents = function() {
   var firstName = prompt('Please Enter your first name ').trim();
-  var lastName = prompt('Please Enter your last name ').trim();
+      lastName = prompt('Please Enter your last name ').trim();
   firstNameCheck = this.checkForNull(firstName);
   lastNameCheck = this.checkForNull(lastName);
   if (firstNameCheck) {
