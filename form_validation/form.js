@@ -8,8 +8,8 @@ function FormValidation(formElement, formElements, textareaElement, confirmCheck
 FormValidation.prototype.bindEvents = function(event) {
   var _this = this;
   _this.formElement.addEventListener('submit', function(event) {
-    var checkforempty = _this.checkForEmpty();
-        checktextarea = _this.checkTextArea();
+    var checkforempty = _this.checkForEmpty(),
+        checktextarea = _this.checkTextArea(),
         checkfornotifications = _this.checkForNotifications(); 
     (checkforempty && checktextarea && checkfornotifications) ? '' : event.preventDefault();
   } );
@@ -63,10 +63,10 @@ FormValidation.prototype.checkForNotifications = function() {
 }
 
 window.onload = function() {
-  var formElement = document.forms[0];
-      formElements = document.getElementsByClassName('textbox');
-      textareaElement = document.getElementById('aboutme');
-      confirmCheckbox = document.getElementById('confirm');
+  var formElement = document.forms[0],
+      formElements = document.getElementsByClassName('textbox'),
+      textareaElement = document.getElementById('aboutme'),
+      confirmCheckbox = document.getElementById('confirm'),
       form = new FormValidation(formElement, formElements, textareaElement, confirmCheckbox);
   form.bindEvents();
 }
