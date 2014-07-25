@@ -30,10 +30,10 @@ SelectCountries.prototype.addToList = function(list) {
 }
 
 window.onload = function() {
-  var firstList = document.getElementById('first-select');
-      secondList = document.getElementById('second-select');
-      addButton = document.getElementById('add');
-      removeButton = document.getElementById('remove');
+  var firstList = document.getElementById('first-select'),
+      secondList = document.getElementById('second-select'),
+      addButton = document.getElementById('add'),
+      removeButton = document.getElementById('remove'),
       moveCountries = new SelectCountries(firstList, secondList, addButton, removeButton);
   moveCountries.bindEvents();
 }
