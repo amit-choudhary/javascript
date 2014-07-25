@@ -21,8 +21,8 @@ CheckBox.prototype.mark = function(flag) {
   }
 
 window.onload = function() {
-  var checkallLink = document.getElementById('check');
-      noneLink = document.getElementById('none');
+  var checkallLink = document.getElementById('check'),
+      noneLink = document.getElementById('none'),
       checkbox = new CheckBox(checkallLink, noneLink);
   checkbox.bindEvents();
 }
