@@ -6,7 +6,7 @@ this.resultTextField = resultTextField;
 
 CheckForm.prototype.bindEvents = function() {
   var flag = '';
-  var _this = this;
+      _this = this;
   this.formElement.addEventListener('submit', function(event) {
     flag = _this.checkNumber(_this.numberTextField.value);
     _this.writeResult(flag);
@@ -29,8 +29,8 @@ CheckForm.prototype.writeResult = function(flag) {
 
 window.onload = function() {
   var formElement = document.forms[0];
-  var numberTextField = document.getElementById('number');
-  var resultTextField = document.getElementById('result');
-  var checkform = new CheckForm(formElement, numberTextField, resultTextField);
+      numberTextField = document.getElementById('number');
+      resultTextField = document.getElementById('result');
+      checkform = new CheckForm(formElement, numberTextField, resultTextField);
   checkform.bindEvents();
 }
