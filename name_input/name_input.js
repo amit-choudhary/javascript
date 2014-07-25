@@ -4,8 +4,8 @@ function PromptBox() {
 PromptBox.prototype.bindEvents = function() {
   var firstName = prompt('Please Enter your first name ').trim();
   var lastName = prompt('Please Enter your last name ').trim();
-  firstNameCheck = (firstName == null || firstName == '');
-  lastNameCheck = (lastName == null || lastName == '');
+  firstNameCheck = this.checkForNull(firstName);
+  lastNameCheck = this.checkForNull(lastName);
   if (firstNameCheck) {
     alert('Firstname cannot be blank');
   }
@@ -18,6 +18,10 @@ PromptBox.prototype.bindEvents = function() {
       document.write(firstName + ' ' + lastName);
     }
   }
+}
+
+PromptBox.prototype.checkForNull = function(name) {
+  return (name == null || name == '');
 }
 
 window.onload = function() {
