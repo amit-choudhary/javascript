@@ -34,7 +34,7 @@ FormValidation.prototype.checkEmailBox = function(emailbox) {
 }
 
 FormValidation.prototype.checkUrlBox = function(urlbox) {
-  var regex = /(http(s)?:\/\/)?([\w]+\.)+[\w]+(\/[\w.\/]*)?/;
+  var regex = /((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)/;
   if( urlbox.value != '') {
   if (!(regex.test(urlbox.value))) {
     alert('Enter url in correct format');
