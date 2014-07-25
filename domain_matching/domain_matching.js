@@ -32,7 +32,7 @@ MatchDomain.prototype.checkFormat = function(textbox) {
 }
 
 MatchDomain.prototype.extractDomain = function(textbox) {
-  var regex = /(\/?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)(\/?)?/;
+  var regex = /(\/?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)(\/?)?/,
       result = regex.exec(textbox.value);
   if (result[0].indexOf('/') != -1) { 
     result = result[0].split('/');
@@ -60,8 +60,8 @@ MatchDomain.prototype.extractDomain = function(textbox) {
 }
 
 window.onload = function() {
-  var domainBox = document.getElementById('domain-textbox');
-      form = document.forms[0];
+  var domainBox = document.getElementById('domain-textbox'),
+      form = document.forms[0],
       matchdomain = new MatchDomain(domainBox, form);
   matchdomain.bindEvents();
 }
