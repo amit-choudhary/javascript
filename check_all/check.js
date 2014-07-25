@@ -22,7 +22,7 @@ CheckBox.prototype.mark = function(flag) {
 
 window.onload = function() {
   var checkallLink = document.getElementById('check');
-  var noneLink = document.getElementById('none');
-  var checkbox = new CheckBox(checkallLink, noneLink);
+      noneLink = document.getElementById('none');
+      checkbox = new CheckBox(checkallLink, noneLink);
   checkbox.bindEvents();
 }
