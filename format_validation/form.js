@@ -7,7 +7,7 @@ function FormValidation(formElement, formElements, textareaElement, confirmCheck
   this.urlbox = urlbox;
 }
 
-FormValidation.prototype.bindEvents = function(event) {
+FormValidation.prototype.bindEvents = function() {
   var _this = this;
   _this.formElement.addEventListener('submit', function(event) {
     var checkforempty = _this.checkForEmpty();
