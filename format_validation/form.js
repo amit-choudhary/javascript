@@ -11,10 +11,10 @@ FormValidation.prototype.bindEvents = function() {
   var _this = this;
   _this.formElement.addEventListener('submit', function(event) {
     var checkforempty = _this.checkForEmpty();
-    var checktextarea = _this.checkTextArea();
-    var checkfornotifications = _this.checkForNotifications();
-    var checkemailbox = _this.checkEmailBox(_this.emailbox);
-    var checkurlbox = _this.checkUrlBox(_this.urlbox);
+        checktextarea = _this.checkTextArea();
+        checkfornotifications = _this.checkForNotifications();
+        checkemailbox = _this.checkEmailBox(_this.emailbox);
+        checkurlbox = _this.checkUrlBox(_this.urlbox);
     (checkforempty && checktextarea && checkfornotifications && checkemailbox && checkurlbox) ? '' : event.preventDefault();
   } );
   
@@ -92,11 +92,11 @@ FormValidation.prototype.checkForNotifications = function() {
 
 window.onload = function() {
   var formElement = document.forms[0];
-  var formElements = document.getElementsByClassName('textbox');
-  var textareaElement = document.getElementById('aboutme');
-  var confirmCheckbox = document.getElementById('confirm');
-  var emailbox = document.getElementById('email');
-  var urlbox = document.getElementById('homepage');
-  var form = new FormValidation(formElement, formElements, textareaElement, confirmCheckbox, emailbox, urlbox);
+      formElements = document.getElementsByClassName('textbox');
+      textareaElement = document.getElementById('aboutme');
+      confirmCheckbox = document.getElementById('confirm');
+      emailbox = document.getElementById('email');
+      urlbox = document.getElementById('homepage');
+      form = new FormValidation(formElement, formElements, textareaElement, confirmCheckbox, emailbox, urlbox);
   form.bindEvents();
 }
