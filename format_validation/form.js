@@ -10,10 +10,10 @@ function FormValidation(formElement, formElements, textareaElement, confirmCheck
 FormValidation.prototype.bindEvents = function() {
   var _this = this;
   _this.formElement.addEventListener('submit', function(event) {
-    var checkforempty = _this.checkForEmpty();
-        checktextarea = _this.checkTextArea();
-        checkfornotifications = _this.checkForNotifications();
-        checkemailbox = _this.checkEmailBox(_this.emailbox);
+    var checkforempty = _this.checkForEmpty(),
+        checktextarea = _this.checkTextArea(),
+        checkfornotifications = _this.checkForNotifications(),
+        checkemailbox = _this.checkEmailBox(_this.emailbox),
         checkurlbox = _this.checkUrlBox(_this.urlbox);
     (checkforempty && checktextarea && checkfornotifications && checkemailbox && checkurlbox) ? '' : event.preventDefault();
   } );
@@ -92,11 +92,11 @@ FormValidation.prototype.checkForNotifications = function() {
 
 window.onload = function() {
   var formElement = document.forms[0];
-      formElements = document.getElementsByClassName('textbox');
-      textareaElement = document.getElementById('aboutme');
-      confirmCheckbox = document.getElementById('confirm');
-      emailbox = document.getElementById('email');
-      urlbox = document.getElementById('homepage');
+      formElements = document.getElementsByClassName('textbox'),
+      textareaElement = document.getElementById('aboutme'),
+      confirmCheckbox = document.getElementById('confirm'),
+      emailbox = document.getElementById('email'),
+      urlbox = document.getElementById('homepage'),
       form = new FormValidation(formElement, formElements, textareaElement, confirmCheckbox, emailbox, urlbox);
   form.bindEvents();
 }
