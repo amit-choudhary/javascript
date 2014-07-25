@@ -1,18 +1,16 @@
-function MainList(mainlistElement) {
+function MainList(listElement, mainlistElement) {
+  this.listElement = listElement;
   this.mainlistElement = mainlistElement;
 }
 
-Mainlist.prototype.bindEvents = function() {
+MainList.prototype.bindEvents = function() {
   var _this = this;
-  for (var i = 0; i < _this.mainlistElement.length; i++) {
-    _this.mainlistElement[i].addEventListener('click', function() {
-      _this.performOnChild(this);
-      console.log(_this);
+    _this.listElement.addEventListener('click', function(event) {
+      _this.performOnChild(event.target);
     } );
-  }
 }
 
-Mainlist.prototype.performOnChild = function(list) {
+MainList.prototype.performOnChild = function(list) {
   var child = document.getElementsByName(list.className);
   if (list.checked == true) {
     for (var j = 0; j < child.length; j++) {
@@ -30,7 +28,8 @@ Mainlist.prototype.performOnChild = function(list) {
 }
 
 window.onload = function() {
+  var listElement = document.getElementById('list');
   var mainlistElement = document.getElementsByName('main-list');
-  var mainlist = new MainList(mainlistElement);
+  var mainlist = new MainList(listElement, mainlistElement);
   mainlist.bindEvents()
 }
