@@ -9,8 +9,8 @@ FormValidation.prototype.bindEvents = function(event) {
   var _this = this;
   _this.formElement.addEventListener('submit', function(event) {
     var checkforempty = _this.checkForEmpty();
-    var checktextarea = _this.checkTextArea();
-    var checkfornotifications = _this.checkForNotifications(); 
+        checktextarea = _this.checkTextArea();
+        checkfornotifications = _this.checkForNotifications(); 
     (checkforempty && checktextarea && checkfornotifications) ? '' : event.preventDefault();
   } );
 }
@@ -64,9 +64,9 @@ FormValidation.prototype.checkForNotifications = function() {
 
 window.onload = function() {
   var formElement = document.forms[0];
-  var formElements = document.getElementsByClassName('textbox');
-  var textareaElement = document.getElementById('aboutme');
-  var confirmCheckbox = document.getElementById('confirm');
-  var form = new FormValidation(formElement, formElements, textareaElement, confirmCheckbox);
+      formElements = document.getElementsByClassName('textbox');
+      textareaElement = document.getElementById('aboutme');
+      confirmCheckbox = document.getElementById('confirm');
+      form = new FormValidation(formElement, formElements, textareaElement, confirmCheckbox);
   form.bindEvents();
 }
