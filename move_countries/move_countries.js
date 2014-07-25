@@ -31,9 +31,9 @@ SelectCountries.prototype.addToList = function(list) {
 
 window.onload = function() {
   var firstList = document.getElementById('first-select');
-  var secondList = document.getElementById('second-select');
-  var addButton = document.getElementById('add');
-  var removeButton = document.getElementById('remove');
-  var moveCountries = new SelectCountries(firstList, secondList, addButton, removeButton);
+      secondList = document.getElementById('second-select');
+      addButton = document.getElementById('add');
+      removeButton = document.getElementById('remove');
+      moveCountries = new SelectCountries(firstList, secondList, addButton, removeButton);
   moveCountries.bindEvents();
 }
