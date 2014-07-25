@@ -21,7 +21,7 @@ FormValidation.prototype.bindEvents = function() {
 }
 
 FormValidation.prototype.checkEmailBox = function(emailbox) {
-  var regex = /(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)/;
+  var regex = /^(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
   if (emailbox.value != '') {
     if (!(regex.test(emailbox.value))) {
       alert('Enter email in correct format');
@@ -34,7 +34,7 @@ FormValidation.prototype.checkEmailBox = function(emailbox) {
 }
 
 FormValidation.prototype.checkUrlBox = function(urlbox) {
-  var regex = /((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)/;
+  var regex = /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
   if( urlbox.value != '') {
   if (!(regex.test(urlbox.value))) {
     alert('Enter url in correct format');
