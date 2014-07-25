@@ -5,9 +5,9 @@ function MainList(listElement, mainlistElement) {
 
 MainList.prototype.bindEvents = function() {
   var _this = this;
-    _this.listElement.addEventListener('click', function(event) {
-      _this.performOnChild(event.target);
-    } );
+  _this.listElement.addEventListener('click', function(event) {
+  _this.performOnChild(event.target);
+  } );
 }
 
 MainList.prototype.performOnChild = function(list) {
@@ -29,7 +29,7 @@ MainList.prototype.performOnChild = function(list) {
 
 window.onload = function() {
   var listElement = document.getElementById('list');
-  var mainlistElement = document.getElementsByName('main-list');
-  var mainlist = new MainList(listElement, mainlistElement);
+      mainlistElement = document.getElementsByName('main-list');
+      mainlist = new MainList(listElement, mainlistElement);
   mainlist.bindEvents()
 }
