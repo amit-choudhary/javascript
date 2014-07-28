@@ -1,30 +1,33 @@
-function PromptBox() {
+function PromptForName() {
 }
 
-PromptBox.prototype.bindEvents = function() {
-  var firstName = prompt('Please Enter your first name ').trim(),
+PromptForName.prototype.inputName = function() {
+  var firstName,
+      lastName;
+  while(!(firstName)) {
+    var firstName = prompt('Please Enter your first name ').trim();
+    this.checkForEmpty(firstName);
+  }
+  while(!(lastName)) {
       lastName = prompt('Please Enter your last name ').trim();
-  firstNameCheck = this.checkForNull(firstName);
-  lastNameCheck = this.checkForNull(lastName);
-  if (firstNameCheck) {
-    alert('Firstname cannot be blank');
+      this.checkForEmpty(lastName);
   }
-  if (lastNameCheck) {
-    alert('Lastname cannot be blank');
-  }
-  if (!(firstNameCheck)) {
-    if (!(lastNameCheck)){
-      alert('Hello ' + firstName + ' ' + lastName);
-      document.write(firstName + ' ' + lastName);
-    }
-  }
+  this.alertAndWrite(firstName, lastName);
 }
 
-PromptBox.prototype.checkForNull = function(name) {
-  return (name == null || name == '');
+PromptForName.prototype.alertAndWrite = function(firstName, lastName) {
+  nameString = firstName + ' ' + lastName
+  alert('Hello ' + nameString);
+  document.write(nameString);
+}
+
+PromptForName.prototype.checkForEmpty = function(name) {
+  if (name == null || name.length == 0) {
+    alert('Name Field cant be empty');
+  }
 }
 
 window.onload = function() {
-  var promptbox = new PromptBox();
-  promptbox.bindEvents();
+  var promptForName = new PromptForName();
+  promptForName.inputName();
 }
