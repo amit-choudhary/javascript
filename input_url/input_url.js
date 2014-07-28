@@ -11,11 +11,11 @@ InputUrl.prototype.bindEvents = function() {
 
 InputUrl.prototype.openUrl = function(url) {
   if (url == null || url.length == 0) {
-      alert('Url cant be empty');
-    }
-    else {
-      window.open(url, "_blank", "width=400, height=450, menubar=no, scrollbars=no, titlebar=no");
-    }
+    alert('Url cant be empty');
+  }
+  else {
+    window.open(url, "_blank", "width=400, height=450, menubar=no, scrollbars=no, titlebar=no");
+  }
 }
 
 window.onload = function() {
