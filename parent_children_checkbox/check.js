@@ -1,35 +1,37 @@
-function MainList(listElement, mainlistElement) {
-  this.listElement = listElement;
-  this.mainlistElement = mainlistElement;
+function Item(mainList, ItemList) {
+  this.mainList = mainList;
+  this.ItemList = ItemList;
 }
 
-MainList.prototype.bindEvents = function() {
+Item.prototype.bindEvents = function() {
   var _this = this;
-  _this.listElement.addEventListener('click', function(event) {
-  _this.performOnChild(event.target);
+  _this.mainList.addEventListener('click', function(event) {
+  _this.performOnSubItems(event.target);
   } );
 }
 
-MainList.prototype.performOnChild = function(list) {
-  var child = document.getElementsByName(list.className);
+Item.prototype.performOnSubItems = function(list) {
+  var subItemList = document.getElementsByName(list.className);
   if (list.checked == true) {
-    for (var j = 0; j < child.length; j++) {
-      child[j].checked = true
-    }
+    this.markSubItemList(subItemList, true);
     document.getElementById(list.className).style.display = "block";
     list.scrollIntoView();
   }
   else {
-    for (var j = 0; j < child.length; j++) {
-      child[j].checked = false;
-    }
+    this.markSubItemList(subItemList, false);
     document.getElementById(list.className).style.display = "none";
   }
 }
 
+Item.prototype.markSubItemList = function(subItemList, mark) {
+  for (var i = 0; i < subItemList.length ; i++) {
+    subItemList[i].checked = mark;
+  }
+}
+
 window.onload = function() {
-  var listElement = document.getElementById('list');
-      mainlistElement = document.getElementsByName('main-list');
-      mainlist = new MainList(listElement, mainlistElement);
-  mainlist.bindEvents()
+  var mainList = document.getElementById('main-list'),
+      ItemList = document.getElementsByName('parent-list'),
+      item = new Item(mainList, ItemList);
+  item.bindEvents();
 }
