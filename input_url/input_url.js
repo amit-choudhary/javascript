@@ -5,7 +5,7 @@ InputUrl.prototype.init = function() {
   var url = '';
   while (!(url)) {
     var url = prompt('Enter the url ').trim();
-    }
+  }
   this.openUrl(url);
 }
 
