@@ -1,6 +1,6 @@
 function CheckBox(checkallLink, noneLink) {
   this.checkallLink = checkallLink;
-  this.noneLink = none;
+  this.noneLink = noneLink;
 }
 
 CheckBox.prototype.bindEvents = function() {
@@ -15,10 +15,10 @@ CheckBox.prototype.bindEvents = function() {
 
 CheckBox.prototype.mark = function(flag) {
   var checkboxes = document.getElementsByName('colors');
-    for (var i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].checked = flag;
-    }
+  for (var i in checkboxes) {
+    checkboxes[i].checked = flag;
   }
+}
 
 window.onload = function() {
   var checkallLink = document.getElementById('check'),
