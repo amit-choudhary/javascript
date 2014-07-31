@@ -7,24 +7,25 @@ function FormValidation(formElement, formElements, textareaElement, confirmCheck
   this.urlbox = urlbox;
 }
 
-FormValidation.prototype.bindEvents = function() {
+FormValidation.prototype.init = function() {
   var _this = this;
+  var emailRegex = /^(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
+  var urlRegex = /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
   _this.formElement.addEventListener('submit', function(event) {
     var checkforempty = _this.checkForEmpty(),
         checktextarea = _this.checkTextArea(),
-        checkfornotifications = _this.checkForNotifications(),
-        checkemailbox = _this.checkEmailBox(_this.emailbox),
-        checkurlbox = _this.checkUrlBox(_this.urlbox);
-    (checkforempty && checktextarea && checkfornotifications && checkemailbox && checkurlbox) ? '' : event.preventDefault();
+        checkemailbox = _this.checkFormat(_this.emailbox, emailRegex),
+        checkurlbox = _this.checkFormat(_this.urlbox, urlRegex);
+    (checkforempty && checktextarea && checkemailbox && checkurlbox) ? _this.confirmNotifications() : event.preventDefault();
   } );
   
 }
 
-FormValidation.prototype.checkEmailBox = function(emailbox) {
-  var regex = /^(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
-  if (emailbox.value != '') {
-    if (!(regex.test(emailbox.value))) {
-      alert('Enter email in correct format');
+FormValidation.prototype.checkFormat = function(textbox, regex) {
+  if (textbox.value != '') {
+    if (!(regex.test(textbox.value))) {
+      elementName = document.getElementsByClassName(textbox.id)[0].innerHTML;
+      alert(elementName + ' format is wrong');
       return false;
     }
     else {
@@ -33,25 +34,15 @@ FormValidation.prototype.checkEmailBox = function(emailbox) {
  }
 }
 
-FormValidation.prototype.checkUrlBox = function(urlbox) {
-  var regex = /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
-  if( urlbox.value != '') {
-  if (!(regex.test(urlbox.value))) {
-    alert('Enter url in correct format');
-    return false;
-  }
-  else {
-    return true;
-  }
-}
-}
-
 FormValidation.prototype.checkForEmpty = function() {
-  var count = -1;
+  var count = 1;
   for (var i = 0; i < this.formElements.length; i++) {
     if (this.formElements[i].value == null || this.formElements[i].value == '') {
       var innertext = document.getElementsByClassName(this.formElements[i].id)[0].innerHTML;
       alert(innertext + ' cant be empty.');
+    }
+    else {
+      ++count;
     }
   }
   if (count < this.formElements.length) {
@@ -68,10 +59,7 @@ FormValidation.prototype.checkTextArea = function() {
     alert(innertext + 'cant be empty.');
     return false;
   }
-  else {
-    return true;
-  }
-  if (this.textareaElement.value.length < 50) {
+  else if (this.textareaElement.value.length < 50) {
     alert(innertext + 'cant be less than 50 characters.');
     return false;
   }
@@ -80,14 +68,13 @@ FormValidation.prototype.checkTextArea = function() {
   }
 }
 
-FormValidation.prototype.checkForNotifications = function() {
-  if (!(this.confirmCheckbox.checked)) {
-    alert('Confirm Notifications');
-    return false;
-  }
-  else {
-    return true;
-  }
+FormValidation.prototype.confirmNotifications = function() {
+  confirm('Confirm Notifications');
+  this.alertSubmitMessage();
+}
+
+FormValidation.prototype.alertSubmitMessage = function() {
+  alert('Your form is successfully submitted');
 }
 
 window.onload = function() {
@@ -98,5 +85,5 @@ window.onload = function() {
       emailbox = document.getElementById('email'),
       urlbox = document.getElementById('homepage'),
       form = new FormValidation(formElement, formElements, textareaElement, confirmCheckbox, emailbox, urlbox);
-  form.bindEvents();
+  form.init();
 }
