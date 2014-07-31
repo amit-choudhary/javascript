@@ -1,24 +1,18 @@
 function PromptForName() {
 }
 
-PromptForName.prototype.inputName = function() {
-  var firstName,
-      lastName;
-  while(!(firstName)) {
-    var firstName = prompt('Please Enter your first name ').trim();
-    this.checkForEmpty(firstName);
+PromptForName.prototype.inputName = function(nameType) {
+  var name;
+  while(!(name)) {
+    name = prompt('Please Enter your ' + nameType + ' name ').trim();
+    this.checkForEmpty(name);
+    completeName += name + ' ';
   }
-  while(!(lastName)) {
-      lastName = prompt('Please Enter your last name ').trim();
-      this.checkForEmpty(lastName);
-  }
-  this.alertAndWrite(firstName, lastName);
 }
 
-PromptForName.prototype.alertAndWrite = function(firstName, lastName) {
-  nameString = firstName + ' ' + lastName
-  alert('Hello ' + nameString);
-  document.write(nameString);
+PromptForName.prototype.alertAndWrite = function(completeName) {
+  alert('Hello ' + completeName);
+  document.write(completeName);
 }
 
 PromptForName.prototype.checkForEmpty = function(name) {
@@ -29,5 +23,8 @@ PromptForName.prototype.checkForEmpty = function(name) {
 
 window.onload = function() {
   var promptForName = new PromptForName();
-  promptForName.inputName();
+  completeName = '';
+  promptForName.inputName('first');
+  promptForName.inputName('second');
+  promptForName.alertAndWrite(completeName);
 }
