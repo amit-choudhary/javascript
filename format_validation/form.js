@@ -7,7 +7,7 @@ function FormValidation(formElement, formElements, textareaElement, confirmCheck
   this.urlbox = urlbox;
 }
 
-FormValidation.prototype.init = function() {
+FormValidation.prototype.checkFormOnSubmit = function() {
   var _this = this;
   var emailRegex = /^(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
   var urlRegex = /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
@@ -69,7 +69,7 @@ FormValidation.prototype.checkTextArea = function() {
 }
 
 FormValidation.prototype.confirmNotifications = function() {
-  confirm('Confirm Notifications');
+  this.confirmCheckbox.checked = confirm('Confirm Notifications');
   this.alertSubmitMessage();
 }
 
@@ -85,5 +85,5 @@ window.onload = function() {
       emailbox = document.getElementById('email'),
       urlbox = document.getElementById('homepage'),
       form = new FormValidation(formElement, formElements, textareaElement, confirmCheckbox, emailbox, urlbox);
-  form.init();
+  form.checkFormOnSubmit();
 }
