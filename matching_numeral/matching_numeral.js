@@ -1,29 +1,27 @@
-function CheckForm(formElement, numberTextField, resultTextField) {
+function CheckForNumber(formElement, numberTextField, resultTextField) {
 this.formElement = formElement;
 this.numberTextField = numberTextField;
 this.resultTextField = resultTextField;
 }
 
-CheckForm.prototype.bindEvents = function() {
-  var flag = '',
-      _this = this;
+CheckForNumber.prototype.bindEvents = function() {
+   var  _this = this;
   _this.formElement.addEventListener('submit', function(event) {
-    flag = _this.checkNumber(_this.numberTextField.value);
-    _this.writeResult(flag);
-    flag ? '' : event.preventDefault();
-  } );  
+    _this.checkValidity(_this.numberTextField.value, event);
+  } );
 }
 
-CheckForm.prototype.checkNumber = function(number) {
-  if (number == null || number == '') {
-    return false;
+CheckForNumber.prototype.checkValidity = function(number, event) {
+  if (number == null || number.trim() == '' || isNaN(number)) {
+    this.writeResult(false);
+    event.preventDefault();
   }
   else {
-  return !(isNaN(number));
+    this.writeResult(true);
   }
 }
 
-CheckForm.prototype.writeResult = function(flag) {
+CheckForNumber.prototype.writeResult = function(flag) {
   this.resultTextField.value = flag;
 }
 
@@ -31,6 +29,6 @@ window.onload = function() {
   var formElement = document.forms[0],
       numberTextField = document.getElementById('number'),
       resultTextField = document.getElementById('result'),
-      checkform = new CheckForm(formElement, numberTextField, resultTextField);
-  checkform.bindEvents();
+      checkForNumberObject = new CheckForNumber(formElement, numberTextField, resultTextField);
+  checkForNumberObject.bindEvents();
 }
