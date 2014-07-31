@@ -1,9 +1,9 @@
 function MoveCountries(firstList, secondList, addButton, removeButton) {
-this.firstList = firstList;
-this.secondList = secondList;
-this.addButton = addButton;
-this.removeButton = removeButton;
-this.selectedOption = '';
+  this.firstList = firstList;
+  this.secondList = secondList;
+  this.addButton = addButton;
+  this.removeButton = removeButton;
+  this.selectedOption = '';
 }
 
 MoveCountries.prototype.bindEvents = function() {
