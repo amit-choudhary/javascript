@@ -5,13 +5,12 @@ function FormValidation(formElement, formElements, textareaElement, confirmCheck
   this.confirmCheckbox = confirmCheckbox;
 }
 
-FormValidation.prototype.bindEvents = function(event) {
+FormValidation.prototype.checkFormOnSubmit = function(event) {
   var _this = this;
   _this.formElement.addEventListener('submit', function(event) {
     var checkforempty = _this.checkForEmpty(),
-        checktextarea = _this.checkTextArea(),
-        checkfornotifications = _this.checkForNotifications(); 
-    (checkforempty && checktextarea && checkfornotifications) ? '' : event.preventDefault();
+        checktextarea = _this.checkTextArea(); 
+    (checkforempty && checktextarea) ? _this.confirmNotifications() : event.preventDefault();
   } );
 }
 
@@ -40,9 +39,6 @@ FormValidation.prototype.checkTextArea = function() {
     alert(innertext + 'cant be empty.');
     return false;
   }
-  else {
-    return true;
-  }
   if (this.textareaElement.value.length < 50) {
     alert(innertext + 'cant be less than 50 characters.');
     return false;
@@ -52,14 +48,13 @@ FormValidation.prototype.checkTextArea = function() {
   }
 }
 
-FormValidation.prototype.checkForNotifications = function() {
-  if (!(this.confirmCheckbox.checked)) {
-    alert('Confirm Notifications');
-    return false;
-  }
-  else {
-    return true;
-  }
+FormValidation.prototype.confirmNotifications = function() {
+  this.confirmCheckbox.checked = confirm('Confirm Notifications');
+  this.alertSubmitMessage();
+}
+
+FormValidation.prototype.alertSubmitMessage = function() {
+  alert('Your form is successfully submitted');
 }
 
 window.onload = function() {
@@ -68,5 +63,5 @@ window.onload = function() {
       textareaElement = document.getElementById('aboutme'),
       confirmCheckbox = document.getElementById('confirm'),
       form = new FormValidation(formElement, formElements, textareaElement, confirmCheckbox);
-  form.bindEvents();
+  form.checkFormOnSubmit();
 }
