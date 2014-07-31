@@ -6,8 +6,8 @@ function MatchDomain(domainBox, form) {
 MatchDomain.prototype.bindEvents = function() {
   var _this = this;
   _this.form.addEventListener('submit', function(event) {
-    var check = _this.checkFormat(_this.domainBox);
-    if (check) {
+    var urlFormatChecker = _this.checkUrlFormat(_this.domainBox);
+    if (urlFormatChecker) {
       _this.extractDomain(_this.domainBox);
     }
     else {
@@ -16,13 +16,13 @@ MatchDomain.prototype.bindEvents = function() {
   } );
 }
 
-MatchDomain.prototype.checkFormat = function(textbox) {
-  var regex = /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
-  if (textbox.value == null || textbox.value == '') {
+MatchDomain.prototype.checkUrlFormat = function(domainTextbox) {
+  var UrlFormatRegex = /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,4})+)+)$/;
+  if (domainTextbox.value == null || domainTextbox.value == '') {
     alert('Url cant be blank');
     return false;
   }
-  else if (!(regex.test(textbox.value))) {
+  else if (!(UrlFormatRegex.test(domainTextbox.value))) {
     alert('Enter url in correct format ');
     return false;
   }
@@ -32,30 +32,15 @@ MatchDomain.prototype.checkFormat = function(textbox) {
 }
 
 MatchDomain.prototype.extractDomain = function(textbox) {
-  var regex = /(\/?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)(\/?)?/,
-      result = regex.exec(textbox.value);
-  if (result[0].indexOf('/') != -1) { 
-    result = result[0].split('/');
-    result = result[1].split('.');
+  var domainRegex = /(([w]+.)?((([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,4})+)+))(\/?)?/,
+      MatchedRegexGroups = domainRegex.exec(textbox.value),
+      extractedDomain = MatchedRegexGroups[3];
+      extractedDomain = extractedDomain.split('.');
+  if (extractedDomain.length == 2) {
+    alert('Domain: ' + extractedDomain[0] + '.com');
   }
   else {
-    result = result[0].split('.');
-  }
-  if (result.length == 2) {
-    alert('Domain: ' + result[0] + '.com');
-  }
-  else if (result.length > 2) {
-    if (result[0] == "www") {
-      if (result.length == 3) {
-        alert('Domain: ' + result[1] + '.com');
-      }
-      if (result.length == 4) {
-        alert('Subdomain: ' + result[1] + '  and Domain: ' + result[2] + '.com');
-      }
-    }
-    else {
-      alert('Subdomain: ' + result[0] + '  and Domain: ' + result[1] + '.com');
-    }
+    alert('Subdomain: ' + extractedDomain[0] + '    Domain: ' + extractedDomain[1] + '.com');
   }
 }
 
