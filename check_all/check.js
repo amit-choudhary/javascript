@@ -1,9 +1,10 @@
-function CheckBox(checkallLink, noneLink) {
+function CheckBoxGroup(checkboxes, checkallLink, noneLink) {
+  this.checkboxes = checkboxes;
   this.checkallLink = checkallLink;
   this.noneLink = noneLink;
 }
 
-CheckBox.prototype.bindEvents = function() {
+CheckBoxGroup.prototype.bindEvents = function() {
   var _this = this
   _this.checkallLink.addEventListener('click', function() {
     _this.mark(true);
@@ -13,16 +14,16 @@ CheckBox.prototype.bindEvents = function() {
   } );
 }
 
-CheckBox.prototype.mark = function(flag) {
-  var checkboxes = document.getElementsByName('colors');
-  for (var i in checkboxes) {
-    checkboxes[i].checked = flag;
+CheckBoxGroup.prototype.mark = function(flag) {
+  for (var i in this.checkboxes) {
+    (this.checkboxes)[i].checked = flag;
   }
 }
 
 window.onload = function() {
   var checkallLink = document.getElementById('check'),
+      checkboxes = document.getElementsByName('colors');
       noneLink = document.getElementById('none'),
-      checkbox = new CheckBox(checkallLink, noneLink);
-  checkbox.bindEvents();
+      checkboxGroup = new CheckBoxGroup(checkboxes, checkallLink, noneLink);
+  checkboxGroup.bindEvents();
 }
