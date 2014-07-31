@@ -8,9 +8,9 @@ function FormValidation(formElement, formElements, textareaElement, confirmCheck
 }
 
 FormValidation.prototype.checkFormOnSubmit = function() {
-  var _this = this;
-  var emailRegex = /^(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
-  var urlRegex = /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
+  var _this = this,
+      emailRegex = /^(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/,
+      urlRegex = /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
   _this.formElement.addEventListener('submit', function(event) {
     var checkforempty = _this.checkForEmpty(),
         checktextarea = _this.checkTextArea(),
