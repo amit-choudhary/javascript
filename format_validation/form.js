@@ -12,11 +12,12 @@ FormValidation.prototype.checkFormOnSubmit = function() {
       emailRegex = /^(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/,
       urlRegex = /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
   _this.formElement.addEventListener('submit', function(event) {
-    var checkforempty = _this.checkForEmpty(),
-        checktextarea = _this.checkTextArea(),
+    var checkforempty = _this.checkForEmpty(_this.formElements),
+        checktextareaelement = _this.checkTextArea(),
         checkemailbox = _this.checkFormat(_this.emailbox, emailRegex),
-        checkurlbox = _this.checkFormat(_this.urlbox, urlRegex);
-    (checkforempty && checktextarea && checkemailbox && checkurlbox) ? _this.confirmNotifications() : event.preventDefault();
+        checkurlbox = _this.checkFormat(_this.urlbox, urlRegex),
+        checknotifications = _this.confirmNotifications();
+    (checkforempty && checktextareaelement && checkemailbox && checkurlbox && checknotifications) ? _this.alertSubmitMessage() : event.preventDefault();
   } );
   
 }
@@ -34,18 +35,18 @@ FormValidation.prototype.checkFormat = function(textbox, regex) {
  }
 }
 
-FormValidation.prototype.checkForEmpty = function() {
-  var count = 1;
-  for (var i = 0; i < this.formElements.length; i++) {
-    if (this.formElements[i].value == null || this.formElements[i].value == '') {
-      var innertext = document.getElementsByClassName(this.formElements[i].id)[0].innerHTML;
+FormValidation.prototype.checkForEmpty = function(elementsArray) {
+  var count = 0;
+  for (var i = 0; i < elementsArray.length; i++) {
+    if (elementsArray[i].value.trim() == '') {
+      var innertext = document.getElementsByClassName(elementsArray[i].id)[0].innerHTML;
       alert(innertext + ' cant be empty.');
     }
     else {
       ++count;
     }
   }
-  if (count < this.formElements.length) {
+  if (count < elementsArray.length) {
     return false;
   }
   else {
@@ -69,8 +70,8 @@ FormValidation.prototype.checkTextArea = function() {
 }
 
 FormValidation.prototype.confirmNotifications = function() {
-  this.confirmCheckbox.checked = confirm('Confirm Notifications');
-  this.alertSubmitMessage();
+  var confirmnotifications = confirm('Confirm Notifications');
+  return confirmnotifications;
 }
 
 FormValidation.prototype.alertSubmitMessage = function() {
