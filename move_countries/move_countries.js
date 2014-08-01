@@ -16,10 +16,10 @@ MoveCountries.prototype.bindEvents = function() {
   } );
 }
 
-MoveCountries.prototype.addToList = function(firstlist, secondlist) {
- for (var count =0 ; count < firstlist.options.length ;) {
-    if(firstlist.options[count].selected) {
-      secondlist.appendChild(firstlist.options[count]);
+MoveCountries.prototype.addToList = function(fromList, toList) {
+ for (var count =0 ; count < fromList.options.length ;) {
+    if(fromList.options[count].selected) {
+      toList.appendChild(fromList.options[count]);
     }
     else {
       count++;
