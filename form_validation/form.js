@@ -18,7 +18,7 @@ FormValidation.prototype.checkFormOnSubmit = function(event) {
 FormValidation.prototype.checkForEmpty = function(elementsArray) {
   var count = 0;
   for (var i = 0; i < elementsArray.length; i++) {
-    if (elementsArray[i].value.trim() == '') {
+    if (elementsArray[i].value == null || elementsArray[i].value.trim() == '') {
       var innertext = document.getElementsByClassName(elementsArray[i].id)[0].innerHTML;
       alert(innertext + ' cant be empty.');
     }
