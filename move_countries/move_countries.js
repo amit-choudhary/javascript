@@ -17,7 +17,7 @@ MoveCountries.prototype.bindEvents = function() {
 }
 
 MoveCountries.prototype.addToList = function(fromList, toList) {
- for (var count =0 ; count < fromList.options.length ;) {
+  for (var count =0 ; count < fromList.options.length ;) {
     if(fromList.options[count].selected) {
       toList.appendChild(fromList.options[count]);
     }
