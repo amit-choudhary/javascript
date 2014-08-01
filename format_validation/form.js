@@ -1,6 +1,6 @@
 var regex = {
-  email: /^(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/,
-  url: /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/
+  email: /^(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-z0-9])+(\.([a-z0-9]){2,3})+)+)$/i,
+  url: /^((http(s)?:\/\/)?(([a-z0-9])+(\.([a-z0-9]){2,3})+)+)$/i
 }
 
 function FormValidation(formElement, formElements, textareaElement, confirmCheckbox, emailbox, urlbox) {
