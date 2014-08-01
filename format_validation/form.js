@@ -46,21 +46,15 @@ FormValidation.prototype.checkForEmpty = function(elementsArray) {
       ++count;
     }
   }
-  if (count < elementsArray.length) {
-    return false;
-  }
-  else {
-    return true;
-  }
+  return (count == elementsArray.length);
 }
 
 FormValidation.prototype.checkTextArea = function() {
-  var innertext = document.getElementsByClassName(this.textareaElement.id)[0].innerHTML;
-  if (this.textareaElement.value == null || this.textareaElement.value.trim() == '') {
-    alert(innertext + 'cant be empty.');
+  var innertext = document.getElementsByClassName(this.textareaElement[0].id)[0].innerHTML;
+  if (!this.checkForEmpty(this.textareaElement)) { 
     return false;
   }
-  else if (this.textareaElement.value.trim().length < 50) {
+  else if (this.textareaElement[0].value.trim().length < 50) {
     alert(innertext + 'cant be less than 50 characters.');
     return false;
   }
