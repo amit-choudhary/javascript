@@ -1,3 +1,8 @@
+var regex = {
+  email: /^(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/,
+  url: /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/
+}
+
 function FormValidation(formElement, formElements, textareaElement, confirmCheckbox, emailbox, urlbox) {
   this.formElement = formElement;
   this.formElements = formElements;
@@ -8,14 +13,12 @@ function FormValidation(formElement, formElements, textareaElement, confirmCheck
 }
 
 FormValidation.prototype.checkFormOnSubmit = function() {
-  var _this = this,
-      emailRegex = /^(([(\w+)(\.){0,1}!#$%&'*+-\/=?^_`{|}~])+@(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/,
-      urlRegex = /^((http(s)?:\/\/)?(([a-zA-Z0-9])+(\.([a-zA-Z0-9]){2,3})+)+)$/;
+  var _this = this;
   _this.formElement.addEventListener('submit', function(event) {
     var checkforempty = _this.checkForEmpty(_this.formElements),
         checktextareaelement = _this.checkTextArea(),
-        checkemailbox = _this.checkFormat(_this.emailbox, emailRegex),
-        checkurlbox = _this.checkFormat(_this.urlbox, urlRegex),
+        checkemailbox = _this.checkFormat(_this.emailbox, regex.email),
+        checkurlbox = _this.checkFormat(_this.urlbox, regex.url),
         checknotifications = _this.confirmNotifications();
     (checkforempty && checktextareaelement && checkemailbox && checkurlbox && checknotifications) ? _this.alertSubmitMessage() : event.preventDefault();
   } );
@@ -75,7 +78,7 @@ FormValidation.prototype.alertSubmitMessage = function() {
 window.onload = function() {
   var formElement = document.forms[0];
       formElements = document.getElementsByClassName('textbox'),
-      textareaElement = document.getElementById('aboutme'),
+      textareaElement = document.getElementsByClassName('textboxarea'),
       confirmCheckbox = document.getElementById('confirm'),
       emailbox = document.getElementById('email'),
       urlbox = document.getElementById('homepage'),
