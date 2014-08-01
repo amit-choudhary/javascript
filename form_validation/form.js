@@ -26,12 +26,7 @@ FormValidation.prototype.checkForEmpty = function(elementsArray) {
       ++count;
     }
   }
-  if (count < elementsArray.length) {
-    return false;
-  }
-  else {
-    return true;
-  }
+  return (count == elementsArray.length);
 }
 
 FormValidation.prototype.checkTextArea = function() {
