@@ -15,12 +15,12 @@ Item.prototype.performOnSubItems = function(list) {
   var subItem = document.getElementById(list.className);
   if (list.checked == true) {
     this.markSubItemList(subItemList, true);
-    subItem.style.display = "block";
+    subItem.style.display = 'block';
     list.scrollIntoView();
   }
   else {
     this.markSubItemList(subItemList, false);
-    subItem.style.display = "none";
+    subItem.style.display = 'none';
   }
 }
 
