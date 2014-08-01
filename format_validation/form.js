@@ -23,8 +23,8 @@ FormValidation.prototype.checkFormOnSubmit = function() {
 }
 
 FormValidation.prototype.checkFormat = function(textbox, regex) {
-  if (textbox.value != '') {
-    if (!(regex.test(textbox.value))) {
+  if (textbox.value.trim() != '') {
+    if (!(regex.test(textbox.value.trim()))) {
       elementName = document.getElementsByClassName(textbox.id)[0].innerHTML;
       alert(elementName + ' format is wrong');
       return false;
@@ -56,11 +56,11 @@ FormValidation.prototype.checkForEmpty = function(elementsArray) {
 
 FormValidation.prototype.checkTextArea = function() {
   var innertext = document.getElementsByClassName(this.textareaElement.id)[0].innerHTML;
-  if (this.textareaElement.value == null || this.textareaElement.value == '') {
+  if (this.textareaElement.value == null || this.textareaElement.value.trim() == '') {
     alert(innertext + 'cant be empty.');
     return false;
   }
-  else if (this.textareaElement.value.length < 50) {
+  else if (this.textareaElement.value.trim().length < 50) {
     alert(innertext + 'cant be less than 50 characters.');
     return false;
   }
