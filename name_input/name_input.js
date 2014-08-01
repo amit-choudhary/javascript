@@ -1,4 +1,5 @@
 function PromptForName() {
+  this.completeName = '';
 }
 
 PromptForName.prototype.inputName = function(nameType) {
@@ -6,7 +7,12 @@ PromptForName.prototype.inputName = function(nameType) {
   while(!(name)) {
     name = prompt('Please Enter your ' + nameType + ' name ').trim();
     this.checkForEmpty(name);
-    completeName += name + ' ';
+    if(!this.completeName) {
+      this.completeName += name;
+    }
+    else {
+      this.completeName += ' ' + name;
+    }
   }
 }
 
@@ -23,8 +29,7 @@ PromptForName.prototype.checkForEmpty = function(name) {
 
 window.onload = function() {
   var promptForName = new PromptForName();
-  completeName = '';
   promptForName.inputName('first');
   promptForName.inputName('second');
-  promptForName.alertAndWrite(completeName);
+  promptForName.alertAndWrite(promptForName.completeName);
 }
