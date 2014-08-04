@@ -1,35 +1,21 @@
 function PromptForName() {
-  this.completeName = '';
 }
 
 PromptForName.prototype.inputName = function(nameType) {
   var name;
   while(!(name)) {
     name = prompt('Please Enter your ' + nameType + ' name ').trim();
-    this.checkForEmpty(name);
-    if(!this.completeName) {
-      this.completeName += name;
-    }
-    else {
-      this.completeName += ' ' + name;
-    }
   }
+  return name;
 }
 
-PromptForName.prototype.alertAndWrite = function(completeName) {
-  alert('Hello ' + completeName);
-  document.write(completeName);
-}
-
-PromptForName.prototype.checkForEmpty = function(name) {
-  if (name == null || name.length == 0) {
-    alert('Name Field cant be empty');
-  }
+PromptForName.prototype.alertAndWrite = function(firstname, lastname) {
+  var nameString = firstname + ' ' + lastname;
+  alert('Hello ' + nameString);
+  document.write(nameString);
 }
 
 window.onload = function() {
   var promptForName = new PromptForName();
-  promptForName.inputName('first');
-  promptForName.inputName('second');
-  promptForName.alertAndWrite(promptForName.completeName);
+  promptForName.alertAndWrite(promptForName.inputName('first'),promptForName.inputName('second'));
 }
