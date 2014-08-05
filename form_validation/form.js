@@ -1,5 +1,5 @@
-function FormValidation(formElement, formElements, textareaElement, confirmCheckbox) {
-  this.formElement = formElement;
+function FormValidation(mainForm, formElements, textareaElement, confirmCheckbox) {
+  this.formElement = mainForm;
   this.formElements = formElements;
   this.textareaElement = textareaElement;
   this.confirmCheckbox = confirmCheckbox;
@@ -16,8 +16,9 @@ FormValidation.prototype.checkFormOnSubmit = function(event) {
 }
 
 FormValidation.prototype.checkForEmpty = function(elementsArray) {
-  var count = 0;
-  for (var i = 0; i < elementsArray.length; i++) {
+  var count = 0,
+      elementsArrayLength = elementsArray.length;
+  for (var i = 0; i < elementsArrayLength; i++) {
     if (elementsArray[i].value == null || elementsArray[i].value.trim() == '') {
       var innertext = document.getElementsByClassName(elementsArray[i].id)[0].innerHTML;
       alert(innertext + ' cant be empty.');
@@ -26,7 +27,7 @@ FormValidation.prototype.checkForEmpty = function(elementsArray) {
       ++count;
     }
   }
-  return (count == elementsArray.length);
+  return (count == elementsArrayLength);
 }
 
 FormValidation.prototype.checkTextArea = function() {
@@ -53,10 +54,10 @@ FormValidation.prototype.alertSubmitMessage = function() {
 }
 
 window.onload = function() {
-  var formElement = document.forms[0],
+  var mainForm = document.getElementById('registration_form'),
       formElements = document.getElementsByClassName('textbox'),
       textareaElement = document.getElementsByClassName('textboxarea'),
       confirmCheckbox = document.getElementById('confirm'),
-      form = new FormValidation(formElement, formElements, textareaElement, confirmCheckbox);
+      form = new FormValidation(mainForm, formElements, textareaElement, confirmCheckbox);
   form.checkFormOnSubmit();
 }
