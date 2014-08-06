@@ -1,7 +1,7 @@
 function CheckForNumber(formElement, numberTextField, resultTextField) {
-this.formElement = formElement;
-this.numberTextField = numberTextField;
-this.resultTextField = resultTextField;
+  this.formElement = formElement;
+  this.numberTextField = numberTextField;
+  this.resultTextField = resultTextField;
 }
 
 CheckForNumber.prototype.bindEvents = function() {
@@ -12,7 +12,8 @@ CheckForNumber.prototype.bindEvents = function() {
 }
 
 CheckForNumber.prototype.checkValidity = function(number, event) {
-  if (number == null || number.trim() == '' || isNaN(number)) {
+  var regex = /^-?\d+\.?\d*$/;
+  if (number == null || number.trim() == '' || !(regex.test(number))) {
     this.writeResult(false);
     event.preventDefault();
   }
@@ -26,7 +27,7 @@ CheckForNumber.prototype.writeResult = function(flag) {
 }
 
 window.onload = function() {
-  var formElement = document.forms[0],
+  var formElement = document.getElementById('numeral_checking_form'),
       numberTextField = document.getElementById('number'),
       resultTextField = document.getElementById('result'),
       checkForNumberObject = new CheckForNumber(formElement, numberTextField, resultTextField);
