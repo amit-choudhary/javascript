@@ -1,24 +1,36 @@
-function CheckForNumber(formElement, numberTextField, resultTextField) {
-  this.formElement = formElement;
-  this.numberTextField = numberTextField;
-  this.resultTextField = resultTextField;
+var regex = {
+  number : /^-?\d+\.?\d*$/
+}
+
+function CheckForNumber(elements) {
+  this.formElement = elements.formElement;
+  this.numberTextField = elements.numberTextField;
+  this.resultTextField = elements.resultTextField;
 }
 
 CheckForNumber.prototype.bindEvents = function() {
-   var  _this = this;
+   var _this = this;
   _this.formElement.addEventListener('submit', function(event) {
     _this.checkValidity(_this.numberTextField.value, event);
   } );
 }
 
 CheckForNumber.prototype.checkValidity = function(number, event) {
-  var regex = /^-?\d+\.?\d*$/;
-  if (number == null || number.trim() == '' || !(regex.test(number))) {
+  if (this.valid(number)) {
+    this.writeResult(true);
+  }
+  else {
     this.writeResult(false);
     event.preventDefault();
   }
+}
+
+CheckForNumber.prototype.valid = function(number) {
+  if (number == null || number.trim() == '' || !(regex.number.test(number.trim()))) {
+    return false;
+  }
   else {
-    this.writeResult(true);
+    return true;
   }
 }
 
@@ -27,9 +39,11 @@ CheckForNumber.prototype.writeResult = function(flag) {
 }
 
 window.onload = function() {
-  var formElement = document.getElementById('numeral_checking_form'),
-      numberTextField = document.getElementById('number'),
-      resultTextField = document.getElementById('result'),
-      checkForNumberObject = new CheckForNumber(formElement, numberTextField, resultTextField);
+  var elements = {
+    formElement : document.getElementById('numeral_checking_form'),
+    numberTextField : document.getElementById('number'),
+    resultTextField : document.getElementById('result')
+  };
+  var checkForNumberObject = new CheckForNumber(elements);
   checkForNumberObject.bindEvents();
 }
